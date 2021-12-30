@@ -19,6 +19,35 @@ and this project adheres to
 
 - `windows/arm64` support ([#3057]).
 
+### Changed
+
+- The setting `local_domain_name` is now in the `dhcp` block in the
+  configuration file to avoid confusion ([#3367]).
+
+#### Configuration Changes
+
+In this release, the schema version has changed from 12 to 13.
+
+- Parameter `local_domain_name`, which in schema versions 12 and earlier used to
+  be a part of the `dns` object, is now a part of the `dhcp` object:
+
+  ```yaml
+  # BEFORE:
+  'dns':
+    # …
+    'local_domain_name': 'lan'
+
+  # AFTER:
+  'dhcp':
+    # …
+    'local_domain_name': 'lan'
+  ```
+
+  To rollback this change, move the parameter back into `dns` and change the
+  `schema_version` back to `12`.
+
+
+
 ### Deprecated
 
 <!--
@@ -32,6 +61,7 @@ TODO(a.garipov): Remove this deprecation, if v0.108.0 is released before the Go
 - Go 1.16 support.
 
 [#3057]: https://github.com/AdguardTeam/AdGuardHome/issues/3057
+[#3367]: https://github.com/AdguardTeam/AdGuardHome/issues/3367
 
 
 

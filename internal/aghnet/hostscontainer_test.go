@@ -133,7 +133,7 @@ func TestHostsContainer_Refresh(t *testing.T) {
 	knownIP := net.IP{127, 0, 0, 1}
 
 	const knownHost = "localhost"
-	const knownAlias = "hocallost"
+	const knownAlias = "localhost-alias"
 
 	const dirname = "dir"
 	const filename1 = "file1"
@@ -421,7 +421,7 @@ func TestHostsContainer(t *testing.T) {
 func TestUniqueRules_ParseLine(t *testing.T) {
 	const (
 		hostname = "localhost"
-		alias    = "hocallost"
+		alias    = "localhost-alias"
 	)
 
 	knownIP := net.IP{127, 0, 0, 1}
@@ -440,7 +440,7 @@ func TestUniqueRules_ParseLine(t *testing.T) {
 		name:      "aliases",
 		line:      strings.Join([]string{knownIP.String(), hostname, alias}, sp),
 		wantIP:    knownIP,
-		wantHosts: []string{"localhost", "hocallost"},
+		wantHosts: []string{"localhost", "localhost-alias"},
 	}, {
 		name:      "invalid_line",
 		line:      knownIP.String(),
